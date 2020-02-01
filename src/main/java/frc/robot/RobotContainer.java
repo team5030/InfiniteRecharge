@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.DriveTrain;
 
@@ -20,9 +21,12 @@ import frc.robot.subsystems.DriveTrain;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain m_driveTrain = new DriveTrain();
   private XboxController m_driver = new XboxController(Constants.driverPortid);
   private XboxController m_operator = new XboxController(Constants.operatorPortid);
+  //drive train Subsytem and Command declarations
+  private final DriveTrain m_driveTrain = new DriveTrain();
+  private final Command drive = new Drive(m_driveTrain, m_driver);
+
 
 
 
@@ -35,7 +39,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    m_driveTrain.setDefaultCommand(new Drive(m_driveTrain, m_driver));
+    m_driveTrain.setDefaultCommand(drive);
   }
 
   /**
