@@ -7,12 +7,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.Drive;
-import frc.robot.subsystems.DriveTrain;
+
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -21,13 +24,16 @@ import frc.robot.subsystems.DriveTrain;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+  // OI devices
   private XboxController m_driver = new XboxController(Constants.driverPortid);
   private XboxController m_operator = new XboxController(Constants.operatorPortid);
+  private NetworkTable m_limelight = NetworkTableInstance.getDefault().getTable("limelight");
   private Compressor m_compressor = new Compressor();
-  //drive train Subsytem and Command declarations
+  // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();
+  private final Turret m_turret = new Turret();
   private final Command drive = new Drive(m_driveTrain, m_driver);
+  private final Command shooter = new Shooter(m_turret,m_operator,m_limelight);
 
 
 
@@ -42,6 +48,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(drive);
+    m_turret.setDefaultCommand(shooter);
+
   }
 
   /**
