@@ -17,20 +17,23 @@ package frc.robot;
  */
 public final class Constants {
     //CAN ids
-    public static final int pdpid=0;
-    public static final int pcmid=1;
-    public static final int leftMotorid_2=2;
-    public static final int righMotorid_1=3;
-    public static final int rightMotorid_2=4;
-    public static final int leftMotorid_1=5;
-    public static final int turretMotorid=6;
-    public static final int shooterMotorid=7;
+    public static final int pdpid = 0;
+    public static final int pcmid = 1;
+    public static final int leftMotorid_2 = 2;
+    public static final int righMotorid_1 = 3;
+    public static final int rightMotorid_2 = 4;
+    public static final int leftMotorid_1 = 5;
+    public static final int turretMotorid = 6;
+    public static final int shooterMotorid = 7;
     
     //Controller ports
-    public static final int driverPortid=0;
-    public static final int operatorPortid=1;
+    public static final int driverPortid = 0;
+    public static final int operatorPortid = 1;
 
     //Solenoid control port 
-    public static final int hoodControlid_1=0;
-    public static final int hoodControlid_2=1;
+    public static final int hoodHighid = 1;
+    public static final int hoodLowid = 2;
+
+    //Math constans
+    public static final int rotationPerDegree = 1;
 }
