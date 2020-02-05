@@ -25,7 +25,7 @@ public class RobotContainer {
   private XboxController m_operator = new XboxController(Constants.operatorPortid);
   //drive train Subsytem and Command declarations
   private final DriveTrain m_driveTrain = new DriveTrain();
-  private final Command drive = new Drive(m_driveTrain, m_driver);
+  private final Drive drive = new Drive(m_driveTrain, m_driver);
 
 
 
