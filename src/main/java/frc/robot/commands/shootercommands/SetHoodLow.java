@@ -5,25 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shootercommands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.TurretSubsystem;
 
+public class SetHoodLow extends CommandBase {
+  private final TurretSubsystem m_TurretSubsystem;
 
-public class Drive extends CommandBase {
-  private final DriveTrain m_driveTrain;
-  private final XboxController m_driver;
   /**
-   * Creates a new Drive.
+   * Creates a new SetHoodLow.
    */
-  public Drive(DriveTrain driveTrain, XboxController driver) {
-    m_driveTrain = driveTrain;
-    m_driver = driver;
-    addRequirements(m_driveTrain);
-
+  public SetHoodLow(TurretSubsystem turretSubsystem) {
+    m_TurretSubsystem = turretSubsystem;
+    addRequirements(m_TurretSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -34,19 +29,7 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double zRotation = m_driver.getX(Hand.kLeft);
-    double rightTrigger = m_driver.getTriggerAxis(Hand.kRight);
-    double leftTrigger = m_driver.getTriggerAxis(Hand.kLeft);
-
-    double xSpeed = rightTrigger-leftTrigger;
-
-    m_driveTrain.arcadeDrive(xSpeed, zRotation);
-    /*
-     *double leftSpeed = -m_driver.getY(Hand.kLeft);
-     *double rightSpeed = -m_driver.getY(Hand.kRight);
-     *m_driveTrain.tankDrive(leftSpeed, rightSpeed);
-     */
-
+    m_TurretSubsystem.setHoodLow();
   }
 
   // Called once the command ends or is interrupted.
