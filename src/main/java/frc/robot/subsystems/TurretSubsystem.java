@@ -20,7 +20,7 @@ import frc.robot.Constants;
 public class TurretSubsystem extends SubsystemBase {
   private final CANSparkMax turretMotor = new CANSparkMax(Constants.CAN.kTurretMotor, MotorType.kBrushless);
   private final CANSparkMax flyWheelMotor = new CANSparkMax(Constants.CAN.kFlyWheelMotor, MotorType.kBrushless);
-  private final DoubleSolenoid hood = new DoubleSolenoid(Constants.PCM.kChannel_0, Constants.PCM.kChannel_1);
+  private final DoubleSolenoid hood = new DoubleSolenoid(Constants.CAN.kPCM,Constants.PCM.kChannel_0, Constants.PCM.kChannel_1);
   private final CANEncoder turretEncoder = turretMotor.getEncoder();
 
   /**
@@ -38,6 +38,7 @@ public class TurretSubsystem extends SubsystemBase {
   public void rotateTurret(double zRotation) {
     turretMotor.set(zRotation);
   }
+
   public double getTurretPosition() {
     return turretEncoder.getPosition();
   }
@@ -45,7 +46,7 @@ public class TurretSubsystem extends SubsystemBase {
   public double getTurretVelocity() {
     return turretEncoder.getVelocity();
   }
-  
+
   public void setFlyWheelSpeed(double ySpeed) {
     flyWheelMotor.set(ySpeed);
   }

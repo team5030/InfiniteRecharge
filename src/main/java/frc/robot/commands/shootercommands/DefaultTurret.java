@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TurretSubsystem;
 
-public class Shooter extends CommandBase {
+public class DefaultTurret extends CommandBase {
   private final TurretSubsystem m_TurretSubsystem;
   private final XboxController m_operator;
 
   /**
-   * Creates a new Shooter.
+   * Creates a new Turret.
    */
-  public Shooter(TurretSubsystem turretSubsystem, XboxController operator) {
+  public DefaultTurret(TurretSubsystem turretSubsystem, XboxController operator) {
     m_TurretSubsystem = turretSubsystem;
     m_operator = operator;
     addRequirements(m_TurretSubsystem);
@@ -33,8 +33,8 @@ public class Shooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double ySpeed = 0.0;
-    m_TurretSubsystem.setFlyWheelSpeed(ySpeed);;
+    double zRotation = m_operator.getTriggerAxis(Hand.kLeft) - m_operator.getTriggerAxis(Hand.kRight);
+    m_TurretSubsystem.rotateTurret(zRotation);
   }
 
   // Called once the command ends or is interrupted.
