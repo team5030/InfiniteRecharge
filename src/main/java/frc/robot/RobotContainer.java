@@ -7,70 +7,61 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
 
-import frc.robot.commands.*;
+import frc.robot.commands.dirvecommands.DefaltDrive;
 import frc.robot.subsystems.*;
 
 /**
- * This class is where the bulk of the robot should be declared.  Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
- * (including subsystems, commands, and button mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure of the robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // OI devices
-  private XboxController m_driver = new XboxController(Constants.driverPortid);
-  private XboxController m_operator = new XboxController(Constants.operatorPortid);
-  private NetworkTable m_limelight = NetworkTableInstance.getDefault().getTable("limelight");
-  private Compressor m_compressor = new Compressor();
-  // The robot's subsystems and commands are defined here...
-  private final DriveTrain m_driveTrain = new DriveTrain();
-  private final Turret m_turret = new Turret();
-  private final Command drive = new Drive(m_driveTrain, m_driver);
-  private final Command shooter = new Shooter(m_turret,m_operator,m_limelight);
+  // Controllers
+  XboxController m_driver = new XboxController(Constants.OI.kDriverControllerPort);
+  XboxController m_operator = new XboxController(Constants.OI.kDriverControllerPort);
 
+  // Subsystems
+  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final TurretSubsystem m_turretContol = new TurretSubsystem();
+  // Commands
+  private final DefaltDrive m_defaltDrive = new DefaltDrive(m_robotDrive, m_driver);
+  private final
 
+  // Air Compressor
+  Compressor m_compressor = new Compressor();
 
-
-
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
-  
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
 
-    m_driveTrain.setDefaultCommand(drive);
-    m_turret.setDefaultCommand(shooter);
+    m_robotDrive.setDefaultCommand(m_defaltDrive);
 
   }
 
   /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * Use this method to define your button->command mappings. Buttons can be
+   * created by instantiating a {@link GenericHID} or one of its subclasses
+   * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
+   * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  
-  private void configureButtonBindings() {
-    
-  }
 
+  private void configureButtonBindings() {
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  //public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    //return m_autoCommand;
-  //}
+  // public Command getAutonomousCommand() {
+  // An ExampleCommand will run in autonomous
+  // return m_autoCommand;
+  // }
 }

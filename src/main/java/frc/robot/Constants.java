@@ -8,18 +8,21 @@
 package frc.robot;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants.  This class should not be used for any other purpose.  All constants should be
- * declared globally (i.e. public static).  Do not put anything functional in this class.
+ * The Constants class provides a convenient place for teams to hold robot-wide
+ * numerical or boolean constants. This class should not be used for any other
+ * purpose. All constants should be declared globally (i.e. public static). Do
+ * not put anything functional in this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
+ * <p>
+ * It is advised to statically import this class (or one of its inner classes)
+ * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
     public final class OI {
         public static final int kDriverControllerPort = 0;
         public static final int kOperatorControllerPort = 1;
     }
+
     public final class CAN {
         public static final int kPDP = 0;
         public static final int kPCM = 0;
@@ -30,6 +33,7 @@ public final class Constants {
         public static final int kTurretMotor = 5;
         public static final int kFlyWheelMotor = 6;
     }
+
     public final class PCM {
         public static final int kChannel_0 = 0;
         public static final int kChannel_1 = 1;
@@ -40,6 +44,7 @@ public final class Constants {
         public static final int kChannel_6 = 6;
         public static final int kChannel_7 = 7;
     }
+
     public final class XboxControllerMap {
         public static final int kA = 1;
         public static final int kB = 1;
@@ -47,7 +52,8 @@ public final class Constants {
         public static final int kY = 1;
 
     }
-    public final class Misc{
+
+    public final class Misc {
         public static final double kMaxDriveSpeed = 0.5;
     }
 }
