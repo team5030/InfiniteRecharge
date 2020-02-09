@@ -5,29 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.shootercommands;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-import frc.robot.subsystems.Turret;
-
-
-
 public class Shooter extends CommandBase {
-  private Turret m_turret; 
-  private XboxController m_operator;
-  private NetworkTable m_limelight;
-  private double tx;
-  private double ty;
-  public Shooter(Turret turret,XboxController operator,NetworkTable limelight) {
-    m_turret = turret;
-    m_operator = operator;
-    m_limelight = limelight;
-    addRequirements(turret);
+  /**
+   * Creates a new Shooter.
+   */
+  public Shooter() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -38,13 +25,6 @@ public class Shooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    tx = m_limelight.getEntry("tx").getDouble(0);
-    ty = m_limelight.getEntry("ty").getDouble(0);
-    if(/*toggle botten*/){
-      //speed math
-      double ySpeed=Math.sqrt(Math.pow(tx, 2)+Math.pow(ty, 2));
-      
-    }
   }
 
   // Called once the command ends or is interrupted.
