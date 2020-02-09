@@ -5,22 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.dirvecommands;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveSubsystem;
 
 
-public class Drive extends CommandBase {
-  private final DriveTrain m_driveTrain;
+public class DefaltDrive extends CommandBase {
+  private final DriveSubsystem m_driveSubsystem;
   private final XboxController m_driver;
   
-  public Drive(DriveTrain driveTrain, XboxController driver) {
-    m_driveTrain = driveTrain;
+  public DefaltDrive(DriveSubsystem driveSubsystem, XboxController driver) {
+    m_driveSubsystem = driveSubsystem;
     m_driver = driver;
-    addRequirements(m_driveTrain);
+    addRequirements(m_driveSubsystem);
 
   }
 
@@ -38,13 +38,7 @@ public class Drive extends CommandBase {
 
     double xSpeed = rightTrigger-leftTrigger;
 
-    m_driveTrain.arcadeDrive(xSpeed, zRotation);
-    /*
-     *double leftSpeed = -m_driver.getY(Hand.kLeft);
-     *double rightSpeed = -m_driver.getY(Hand.kRight);
-     *m_driveTrain.tankDrive(leftSpeed, rightSpeed);
-     */
-
+    m_driveSubsystem.arcadeDrive(xSpeed, zRotation);
   }
 
   // Called once the command ends or is interrupted.

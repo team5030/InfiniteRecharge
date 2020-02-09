@@ -16,24 +16,38 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    //CAN ids
-    public static final int pdpid = 0;
-    public static final int pcmid = 1;
-    public static final int leftMotorid_2 = 2;
-    public static final int righMotorid_1 = 3;
-    public static final int rightMotorid_2 = 4;
-    public static final int leftMotorid_1 = 5;
-    public static final int turretMotorid = 6;
-    public static final int shooterMotorid = 7;
-    
-    //Controller ports
-    public static final int driverPortid = 0;
-    public static final int operatorPortid = 1;
+    public final class OI {
+        public static final int kDriverControllerPort = 0;
+        public static final int kOperatorControllerPort = 1;
+    }
+    public final class CAN {
+        public static final int kPDP = 0;
+        public static final int kPCM = 0;
+        public static final int kLeftDriveMotor_1 = 1;
+        public static final int kRightDriveMotor_1 = 2;
+        public static final int kLeftDriveMotor_2 = 3;
+        public static final int kRightDriveMotor_2 = 4;
+        public static final int kTurretMotor = 5;
+        public static final int kFlyWheelMotor = 6;
+    }
+    public final class PCM {
+        public static final int kChannel_0 = 0;
+        public static final int kChannel_1 = 1;
+        public static final int kChannel_2 = 2;
+        public static final int kChannel_3 = 3;
+        public static final int kChannel_4 = 4;
+        public static final int kChannel_5 = 5;
+        public static final int kChannel_6 = 6;
+        public static final int kChannel_7 = 7;
+    }
+    public final class XboxControllerMap {
+        public static final int kA = 1;
+        public static final int kB = 1;
+        public static final int kX = 1;
+        public static final int kY = 1;
 
-    //Solenoid control port 
-    public static final int hoodHighid = 1;
-    public static final int hoodLowid = 2;
-
-    //Math constans
-    public static final int rotationPerDegree = 1;
+    }
+    public final class Misc{
+        public static final double kMaxDriveSpeed = 0.5;
+    }
 }
