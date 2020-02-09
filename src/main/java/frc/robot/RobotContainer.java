@@ -10,8 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-
-import frc.robot.commands.dirvecommands.DefaltDrive;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.dirvecommands.*;
+import frc.robot.commands.shootercommands.*;
 import frc.robot.subsystems.*;
 
 /**
@@ -31,16 +32,18 @@ public class RobotContainer {
   private final TurretSubsystem m_turretContol = new TurretSubsystem();
   // Commands
   private final DefaltDrive m_defaltDrive = new DefaltDrive(m_robotDrive, m_driver);
-  private final
-
+  private final DefaultTurret m_defaltTurret = new DefaultTurret(m_turretContol,m_operator);
+  private final SetHoodHigh m_setHoodHigh = new SetHoodHigh(m_turretContol);
+  private final SetHoodLow m_setHoodLow = new SetHoodLow(m_turretContol);
   // Air Compressor
-  Compressor m_compressor = new Compressor();
+  Compressor m_compressor = new Compressor(Constants.CAN.kPCM);
 
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
 
     m_robotDrive.setDefaultCommand(m_defaltDrive);
+    m_turretContol.setDefaultCommand(m_defaltTurret);
 
   }
 
@@ -52,7 +55,7 @@ public class RobotContainer {
    */
 
   private void configureButtonBindings() {
-
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHoodHigh).whenPressed(m_setHoodLow);
   }
 
   /**
