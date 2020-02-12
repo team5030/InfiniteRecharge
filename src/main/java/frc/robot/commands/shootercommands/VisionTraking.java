@@ -7,14 +7,20 @@
 
 package frc.robot.commands.shootercommands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.TurretSubsystem;
 
 public class VisionTraking extends CommandBase {
+  private static TurretSubsystem m_turretSubsystem;
+  private static XboxController m_operator;
   /**
    * Creates a new VisionTraking.
    */
-  public VisionTraking() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public VisionTraking(final TurretSubsystem turretSubsystem,final XboxController operator) {
+    m_turretSubsystem=turretSubsystem;
+    m_operator=operator;
+    addRequirements(m_turretSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +35,7 @@ public class VisionTraking extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(final boolean interrupted) {
   }
 
   // Returns true when the command should end.
