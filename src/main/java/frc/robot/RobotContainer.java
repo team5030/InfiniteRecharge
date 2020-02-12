@@ -35,7 +35,7 @@ public class RobotContainer {
   private final DefaltDrive m_defaltDrive = new DefaltDrive(m_robotDrive, m_driver);
   private final DefaultTurret m_defaltTurret = new DefaultTurret(m_turretContol,m_operator);
   private final SetHood m_setHood = new SetHood(m_turretContol);
-  private final VisionTraking m_visionTraking = new VisionTraking(m_turretContol,m_operator);
+  private final VisionTracking m_visionTracking = new VisionTracking(m_turretContol,m_operator);
 
   // Air Compressor
   Compressor m_compressor = new Compressor(Constants.CAN.kPCM);
@@ -58,7 +58,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHood);
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kR1).whenHeld(m_visionTraking);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kR1).whenHeld(m_visionTracking);
   }
 
   /**

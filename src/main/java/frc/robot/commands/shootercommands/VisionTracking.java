@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TurretSubsystem;
 
-public class VisionTraking extends CommandBase {
+public class VisionTracking extends CommandBase {
   private static TurretSubsystem m_turretSubsystem;
   private static XboxController m_operator;
   /**
    * Creates a new VisionTraking.
    */
-  public VisionTraking(final TurretSubsystem turretSubsystem,final XboxController operator) {
+  public VisionTracking(final TurretSubsystem turretSubsystem,final XboxController operator) {
     m_turretSubsystem=turretSubsystem;
     m_operator=operator;
     addRequirements(m_turretSubsystem);
