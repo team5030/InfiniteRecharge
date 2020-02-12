@@ -47,10 +47,13 @@ public final class Constants {
 
     public final class XboxControllerMap {
         public static final int kA = 1;
-        public static final int kB = 1;
-        public static final int kX = 1;
-        public static final int kY = 1;
-
+        public static final int kB = 2;
+        public static final int kX = 3;
+        public static final int kY = 4;
+        public static final int kL1 = 5;
+        public static final int kR1 = 6;
+        public static final int kL3 = 9;
+        public static final int kR3 = 10;
     }
 
     public final class Misc {
