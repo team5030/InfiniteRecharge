@@ -7,16 +7,17 @@
 
 package frc.robot.commands.shootercommands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TurretSubsystem;
 
-public class SetHoodLow extends CommandBase {
+public class SetHood extends CommandBase {
   private final TurretSubsystem m_TurretSubsystem;
 
   /**
    * Creates a new SetHoodLow.
    */
-  public SetHoodLow(TurretSubsystem turretSubsystem) {
+  public SetHood(TurretSubsystem turretSubsystem) {
     m_TurretSubsystem = turretSubsystem;
     addRequirements(m_TurretSubsystem);
   }
@@ -24,12 +25,16 @@ public class SetHoodLow extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    if(m_TurretSubsystem.isHoodHigh()){
+      m_TurretSubsystem.setHoodLow();
+    }else{
+      m_TurretSubsystem.setHoodHigh();
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_TurretSubsystem.setHoodLow();
   }
 
   // Called once the command ends or is interrupted.

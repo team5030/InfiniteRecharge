@@ -30,11 +30,12 @@ public class RobotContainer {
   // Subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final TurretSubsystem m_turretContol = new TurretSubsystem();
+
   // Commands
   private final DefaltDrive m_defaltDrive = new DefaltDrive(m_robotDrive, m_driver);
   private final DefaultTurret m_defaltTurret = new DefaultTurret(m_turretContol,m_operator);
-  private final SetHoodHigh m_setHoodHigh = new SetHoodHigh(m_turretContol);
-  private final SetHoodLow m_setHoodLow = new SetHoodLow(m_turretContol);
+  private final SetHood m_setHood = new SetHood(m_turretContol);
+  
   // Air Compressor
   Compressor m_compressor = new Compressor(Constants.CAN.kPCM);
 
@@ -55,7 +56,7 @@ public class RobotContainer {
    */
 
   private void configureButtonBindings() {
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHoodHigh).whenPressed(m_setHoodLow);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHood);
   }
 
   /**
