@@ -50,8 +50,10 @@ public final class Constants {
         public static final int kB = 2;
         public static final int kX = 3;
         public static final int kY = 4;
-        public static final int kL1 = 5;
-        public static final int kR1 = 6;
+        public static final int kLB = 5;
+        public static final int kRB = 6;
+        public static final int kVB = 7;
+        public static final int kMB = 5;
         public static final int kL3 = 9;
         public static final int kR3 = 10;
     }

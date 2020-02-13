@@ -23,6 +23,7 @@ import frc.robot.subsystems.*;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
   // Controllers
   XboxController m_driver = new XboxController(Constants.OI.kDriverControllerPort);
   XboxController m_operator = new XboxController(Constants.OI.kDriverControllerPort);
@@ -58,7 +59,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHood);
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kR1).whenHeld(m_visionTracking);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kRB).whenHeld(m_visionTracking);
   }
 
   /**
