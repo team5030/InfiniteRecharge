@@ -58,4 +58,11 @@ public class TurretSubsystem extends SubsystemBase {
   public void setHoodLow() {
     hood.set(Value.kReverse);
   }
+  public boolean isHoodHigh(){
+    if(hood.get()==Value.kForward){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
