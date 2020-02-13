@@ -13,28 +13,32 @@ import frc.robot.subsystems.TurretSubsystem;
 
 public class SetHood extends CommandBase {
   private final TurretSubsystem m_TurretSubsystem;
+  private boolean finished;
 
   /**
    * Creates a new SetHoodLow.
    */
   public SetHood(TurretSubsystem turretSubsystem) {
     m_TurretSubsystem = turretSubsystem;
+    finished = false;
     addRequirements(m_TurretSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(m_TurretSubsystem.isHoodHigh()){
-      m_TurretSubsystem.setHoodLow();
-    }else{
-      m_TurretSubsystem.setHoodHigh();
-    }
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(m_TurretSubsystem.isHoodHigh()){
+      m_TurretSubsystem.setHoodLow();
+    }else{
+      m_TurretSubsystem.setHoodHigh();
+    }
+    finished = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -45,6 +49,6 @@ public class SetHood extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }
