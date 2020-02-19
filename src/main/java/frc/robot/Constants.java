@@ -58,7 +58,7 @@ public final class Constants {
         public static final int kR3 = 10;
     }
     public final class GearBoxRatio {
-        public static final double kDrive = 16.0;
+        public static final double kDrive = 11.0/98.0;
     }
 
     public final class Misc {
