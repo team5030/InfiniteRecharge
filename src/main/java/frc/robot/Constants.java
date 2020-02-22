@@ -29,8 +29,8 @@ public final class Constants {
         public static final int kPDP = 0;
         public static final int kPCM = 0;
         public static final int kLeftDriveMotor_1 = 1;
-        public static final int kRightDriveMotor_1 = 2;
-        public static final int kLeftDriveMotor_2 = 3;
+        public static final int kRightDriveMotor_1 = 3;
+        public static final int kLeftDriveMotor_2 = 2;
         public static final int kRightDriveMotor_2 = 4;
         public static final int kTurretMotor = 5;
         public static final int kFlyWheelMotor = 6;
@@ -63,12 +63,7 @@ public final class Constants {
         public static final double kDrive = 11.0/98.0;
     }
     public final class Drive{
-        public static final double kDeltaMax = 1;
-        public static final double kRampRateUp = 0.05;
-        public static final double kRampRateDown = 0.1;
-        public static final String kRampNormal = "normal";
-        public static final String kRampUp = "rampup";
-        public static final String kRampDown = "rampdown";
+        public static final double kSlewRate = 0.8;
     }
     public final class Misc {
         public static final double kMaxDriveSpeed = 0.5;

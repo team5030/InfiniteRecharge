@@ -11,6 +11,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.SlewRateLimiter;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
+  private final SlewRateLimiter slewRate = new SlewRateLimiter(Constants.Drive.kSlewRate);
   // The motors on the left side of the drive.
   private final CANSparkMax m_leftMotor1 = new CANSparkMax(Constants.CAN.kLeftDriveMotor_1, MotorType.kBrushless);
   private final CANSparkMax m_leftMotor2 = new CANSparkMax(Constants.CAN.kLeftDriveMotor_2, MotorType.kBrushless);
@@ -51,7 +53,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void arcadeDrive(final double xSpeed, final double zRotation) {
-    m_drive.arcadeDrive(xSpeed, zRotation);
+    m_drive.arcadeDrive(slewRate.calculate(xSpeed), zRotation);
   }
   //sets the convertion ratio for the drive encoders
   private void setEncoderConvertion(double factor){
