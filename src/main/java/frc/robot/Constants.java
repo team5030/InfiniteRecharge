@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import java.lang.invoke.StringConcatFactory;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants. This class should not be used for any other
@@ -60,7 +62,14 @@ public final class Constants {
     public final class GearBoxRatio {
         public static final double kDrive = 11.0/98.0;
     }
-
+    public final class Drive{
+        public static final double kDeltaMax = 1;
+        public static final double kRampRateUp = 0.05;
+        public static final double kRampRateDown = 0.1;
+        public static final String kRampNormal = "normal";
+        public static final String kRampUp = "rampup";
+        public static final String kRampDown = "rampdown";
+    }
     public final class Misc {
         public static final double kMaxDriveSpeed = 0.5;
     }

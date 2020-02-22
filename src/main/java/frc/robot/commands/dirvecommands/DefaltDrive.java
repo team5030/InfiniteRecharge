@@ -10,13 +10,14 @@ package frc.robot.commands.dirvecommands;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 
 
 public class DefaltDrive extends CommandBase {
   private final DriveSubsystem m_driveSubsystem;
   private final XboxController m_driver;
-  
+  private double oldInput = 0;
   public DefaltDrive(DriveSubsystem driveSubsystem, XboxController driver) {
     m_driveSubsystem = driveSubsystem;
     m_driver = driver;
@@ -28,16 +29,41 @@ public class DefaltDrive extends CommandBase {
   @Override
   public void initialize() {
   }
-
+ 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double zRotation = m_driver.getX(Hand.kLeft);
-    double rightTrigger = m_driver.getTriggerAxis(Hand.kRight);
-    double leftTrigger = m_driver.getTriggerAxis(Hand.kLeft);
+    double zRotation = m_driver.getX(Hand.kLeft), input = m_driver.getTriggerAxis(Hand.kRight)-m_driver.getTriggerAxis(Hand.kLeft),
+    DELTA_LIMIT=Constants.Drive.kDeltaMax, xSpeed = 0, capture_value=0;
+    String mode=Constants.Drive.kRampNormal;
 
-    double xSpeed = rightTrigger-leftTrigger;
+    //rate of change in joystick values.
+    double delta = input - oldInput;
 
+    //is joystick being moved too fast?
+    if(delta >= DELTA_LIMIT) { 
+	    mode=Constants.Drive.kRampUp; 
+	    capture_value = input;
+    }else if(delta <= -DELTA_LIMIT) { 
+	    mode=Constants.Drive.kRampDown; 
+	    capture_value = input;
+    } 
+
+    //output integration
+    switch(mode){
+	    case Constants.Drive.kRampUp: 
+		  xSpeed += Constants.Drive.kRampRateUp;
+		  if(xSpeed >= capture_value) { mode = Constants.Drive.kRampNormal; }
+		    break;
+		  case Constants.Drive.kRampDown:
+		    xSpeed-= Constants.Drive.kRampRateDown;
+		    if(xSpeed <= capture_value) { mode = Constants.Drive.kRampNormal; }
+		    break;
+	    case Constants.Drive.kRampNormal:
+		    xSpeed = input;
+		    break;
+	    default: break;
+    }
     m_driveSubsystem.arcadeDrive(xSpeed, zRotation);
   }
 
