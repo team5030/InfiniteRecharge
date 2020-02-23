@@ -10,14 +10,14 @@ package frc.robot.commands.dirvecommands;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+
 import frc.robot.subsystems.DriveSubsystem;
 
 
 public class DefaltDrive extends CommandBase {
   private final DriveSubsystem m_driveSubsystem;
   private final XboxController m_driver;
-  private double oldInput = 0;
+
   public DefaltDrive(DriveSubsystem driveSubsystem, XboxController driver) {
     m_driveSubsystem = driveSubsystem;
     m_driver = driver;
@@ -33,7 +33,8 @@ public class DefaltDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double zRotation = m_driver.getX(Hand.kLeft), xSpeed = m_driver.getTriggerAxis(Hand.kRight)-m_driver.getTriggerAxis(Hand.kLeft);
+    double zRotation = m_driver.getX(Hand.kLeft),
+           xSpeed = m_driver.getTriggerAxis(Hand.kRight)-m_driver.getTriggerAxis(Hand.kLeft);
     m_driveSubsystem.arcadeDrive(xSpeed, zRotation);
   }
 
