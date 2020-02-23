@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class TurretSubsystem extends SubsystemBase {
-  private final CANSparkMax turretMotor = new CANSparkMax(Constants.CAN.kTurretMotor, MotorType.kBrushless);
-  private final CANSparkMax flyWheelMotor = new CANSparkMax(Constants.CAN.kFlyWheelMotor, MotorType.kBrushless);
+  private final CANSparkMax turretMotor = new CANSparkMax(Constants.CAN.kTurretMotor, MotorType.kBrushless),
+                            flyWheelMotor = new CANSparkMax(Constants.CAN.kFlyWheelMotor, MotorType.kBrushless);
   private final DoubleSolenoid hood = new DoubleSolenoid(Constants.CAN.kPCM,Constants.PCM.kChannel_0, Constants.PCM.kChannel_1);
   private final CANEncoder turretEncoder = turretMotor.getEncoder();
 
