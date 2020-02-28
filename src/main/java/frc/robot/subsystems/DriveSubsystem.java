@@ -67,4 +67,8 @@ public class DriveSubsystem extends SubsystemBase {
   public double getAverageVelocity() {
     return (m_leftEncoder.getVelocity() + m_rightEncoder.getVelocity()) / 2.0;
   }
+  public void setEncoderPosition(double position){
+    m_leftEncoder.setPosition(position);
+    m_rightEncoder.setPosition(position);
+  }
 }
