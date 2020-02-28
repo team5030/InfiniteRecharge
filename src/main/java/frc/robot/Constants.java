@@ -26,10 +26,10 @@ public final class Constants {
     public final class CAN {
         public static final int kPDP = 0,
                                 kPCM = 0,
-                                kLeftDriveMotor_1 = 1,
-                                kRightDriveMotor_1 = 3,
-                                kLeftDriveMotor_2 = 2,
-                                kRightDriveMotor_2 = 4,
+                                kLeftRearDriveMotor = 1,
+                                kLeftFrontDriveMotor = 2,
+                                kRightFrontDriveMotor = 3,
+                                kRightRearDriveMotor = 4,
                                 kTurretMotor = 5,
                                 kFlyWheelMotor = 6;
     }
