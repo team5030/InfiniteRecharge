@@ -25,13 +25,19 @@ public final class Constants {
 
     public final class CAN {
         public static final int kPDP = 0,
-                                kPCM = 0,
-                                kLeftRearDriveMotor = 1,
-                                kLeftFrontDriveMotor = 2,
-                                kRightFrontDriveMotor = 3,
-                                kRightRearDriveMotor = 4,
-                                kTurretMotor = 5,
-                                kFlyWheelMotor = 6;
+                                kFlyWheelMotor = 1,
+                                kTurretMotor = 2,
+                                kLeftRearDriveMotor = 3,
+                                kLeftFrontDriveMotor = 4,
+                                kPCM = 5,
+                                kIntakeMotor_1 = 6,
+                                kIntakeMotor_2 = 7,
+                                kRightRearDriveMotor = 8,
+                                kRightFrontDriveMotor = 9,
+                                kTowerMotor = 10,
+                                kHooperMotor = 11;
+                                
+                                
     }
 
     public final class PCM {
@@ -59,6 +65,7 @@ public final class Constants {
     }
     public final class GearBoxRatio {
         public static final double kDrive = 11.0/98.0;
+        public static final double kTurret = 0;
     }
     public final class Drive{
         public static final double kSlewRate = 0.8;
