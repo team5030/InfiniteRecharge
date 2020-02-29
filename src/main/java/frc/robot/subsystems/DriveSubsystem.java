@@ -50,7 +50,10 @@ public class DriveSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("m_leftFrontEncoder", m_leftFrontEncoder.getPosition());
+    SmartDashboard.putNumber("Left Front Encoder",getLeftFrontEncoder());
+    SmartDashboard.putNumber("Left Rear Encoder", getLeftRearEncoder());
+    SmartDashboard.putNumber("Right Front Encoder", getrightFrontEncoder());
+    SmartDashboard.putNumber("Right Rear Encoder", getrightRearEncoder());
   }
 
   public void arcadeDrive(final double xSpeed, final double zRotation) {
