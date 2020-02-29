@@ -7,10 +7,13 @@
 
 package frc.robot.commands.dirvecommands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class ForwardDrive extends CommandBase {
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
+public class ForwardDrive extends InstantCommand {
   private final DriveSubsystem m_driveSubsystem;
   private final double m_rotations;
   /**
@@ -20,31 +23,19 @@ public class ForwardDrive extends CommandBase {
     m_driveSubsystem = driveSubsystem;
     m_rotations = rotations;
     addRequirements(m_driveSubsystem);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_driveSubsystem.setEncoderPosition(0);
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    if(m_driveSubsystem.getAveragePosition()<m_rotations*42){
-      m_driveSubsystem.arcadeDrive(.5, 0);
+    m_driveSubsystem.setEncodersPosition(0);
+    if(m_rotations > 0){
+      while(m_driveSubsystem.getLeftFrontEncoder() < m_rotations){
+        m_driveSubsystem.arcadeDrive(.5, 0);
+      }
+    }else{
+      while(m_driveSubsystem.getLeftFrontEncoder() > m_rotations){
+        m_driveSubsystem.arcadeDrive(-.5, 0);
+      }
     }
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }
