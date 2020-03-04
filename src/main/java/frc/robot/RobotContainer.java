@@ -39,12 +39,11 @@ public class RobotContainer {
   private final VisionTracking m_visionTracking = new VisionTracking(m_turretContol,m_operator);
 
   // Air Compressor
-  Compressor m_compressor = new Compressor(Constants.CAN.kPCM);
+  private final Compressor m_compressor = new Compressor(Constants.CAN.kPCM);
 
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-
     m_robotDrive.setDefaultCommand(m_defaltDrive);
     m_turretContol.setDefaultCommand(m_defaltTurret);
 
