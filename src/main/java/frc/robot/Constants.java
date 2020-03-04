@@ -41,14 +41,10 @@ public final class Constants {
     }
 
     public final class PCM {
-        public static final int kChannel_0 = 0,
-                                kChannel_1 = 1,
-                                kChannel_2 = 2,
-                                kChannel_3 = 3,
-                                kChannel_4 = 4,
-                                kChannel_5 = 5,
-                                kChannel_6 = 6,
-                                kChannel_7 = 7;
+        public static final int kIntakeReverse = 0,
+                                kHoodReverse = 1,
+                                kIntakeForward = 2,
+                                kHoodForward = 3;
     }
 
     public final class XboxControllerMap {
