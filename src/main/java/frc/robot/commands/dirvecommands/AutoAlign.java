@@ -7,35 +7,27 @@
 
 package frc.robot.commands.dirvecommands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import frc.robot.subsystems.DriveSubsystem;
 
-
-public class DefaltDrive extends CommandBase {
+public class AutoAlign extends CommandBase {
   private final DriveSubsystem m_driveSubsystem;
-  private final XboxController m_driver;
-
-  public DefaltDrive(DriveSubsystem driveSubsystem, XboxController driver) {
+  /**
+   * Creates a new AutoAlign.
+   */
+  public AutoAlign(DriveSubsystem driveSubsystem) {
     m_driveSubsystem = driveSubsystem;
-    m_driver = driver;
     addRequirements(m_driveSubsystem);
-
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
- 
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double zRotation = m_driver.getX(Hand.kLeft),
-           xSpeed = m_driver.getTriggerAxis(Hand.kRight)-m_driver.getTriggerAxis(Hand.kLeft);
-    m_driveSubsystem.arcadeDrive(xSpeed, zRotation);
   }
 
   // Called once the command ends or is interrupted.

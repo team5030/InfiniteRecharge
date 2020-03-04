@@ -19,45 +19,57 @@ package frc.robot;
  */
 public final class Constants {
     public final class OI {
-        public static final int kDriverControllerPort = 0;
-        public static final int kOperatorControllerPort = 1;
+        public static final int kDriverControllerPort = 0,
+                                kOperatorControllerPort = 1;
     }
 
     public final class CAN {
-        public static final int kPDP = 0;
-        public static final int kPCM = 0;
-        public static final int kLeftDriveMotor_1 = 1;
-        public static final int kRightDriveMotor_1 = 2;
-        public static final int kLeftDriveMotor_2 = 3;
-        public static final int kRightDriveMotor_2 = 4;
-        public static final int kTurretMotor = 5;
-        public static final int kFlyWheelMotor = 6;
+        public static final int kPDP = 0,
+                                kFlyWheelMotor = 1,
+                                kTurretMotor = 2,
+                                kLeftRearDriveMotor = 3,
+                                kLeftFrontDriveMotor = 4,
+                                kPCM = 5,
+                                kIntakeMotor_1 = 6,
+                                kIntakeMotor_2 = 7,
+                                kRightRearDriveMotor = 8,
+                                kRightFrontDriveMotor = 9,
+                                kTowerMotor = 10,
+                                kHooperMotor = 11;
+                                
+                                
     }
 
     public final class PCM {
-        public static final int kChannel_0 = 0;
-        public static final int kChannel_1 = 1;
-        public static final int kChannel_2 = 2;
-        public static final int kChannel_3 = 3;
-        public static final int kChannel_4 = 4;
-        public static final int kChannel_5 = 5;
-        public static final int kChannel_6 = 6;
-        public static final int kChannel_7 = 7;
+        public static final int kChannel_0 = 0,
+                                kChannel_1 = 1,
+                                kChannel_2 = 2,
+                                kChannel_3 = 3,
+                                kChannel_4 = 4,
+                                kChannel_5 = 5,
+                                kChannel_6 = 6,
+                                kChannel_7 = 7;
     }
 
     public final class XboxControllerMap {
-        public static final int kA = 1;
-        public static final int kB = 2;
-        public static final int kX = 3;
-        public static final int kY = 4;
-        public static final int kLB = 5;
-        public static final int kRB = 6;
-        public static final int kVB = 7;
-        public static final int kMB = 5;
-        public static final int kL3 = 9;
-        public static final int kR3 = 10;
+        public static final int kA = 1,
+                                kB = 2,
+                                kX = 3,
+                                kY = 4,
+                                kLB = 5,
+                                kRB = 6,
+                                kVB = 7,
+                                kMB = 5,
+                                kL3 = 9,
+                                kR3 = 10;
     }
-
+    public final class GearBoxRatio {
+        public static final double kDrive = 11.0/98.0;
+        public static final double kTurret = 0;
+    }
+    public final class Drive{
+        public static final double kSlewRate = 0.8;
+    }
     public final class Misc {
         public static final double kMaxDriveSpeed = 0.5;
     }

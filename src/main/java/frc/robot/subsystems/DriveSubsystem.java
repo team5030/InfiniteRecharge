@@ -11,59 +11,83 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.SlewRateLimiter;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
-  // The motors on the left side of the drive.
-  private final SpeedControllerGroup m_leftMotors = new SpeedControllerGroup(
-      new CANSparkMax(Constants.CAN.kLeftDriveMotor_1, MotorType.kBrushless),
-      new CANSparkMax(Constants.CAN.kLeftDriveMotor_2, MotorType.kBrushless));
-
-  // The motors on the right side of the drive.
-  private final SpeedControllerGroup m_rightMotors = new SpeedControllerGroup(
-      new CANSparkMax(Constants.CAN.kRightDriveMotor_1, MotorType.kBrushless),
-      new CANSparkMax(Constants.CAN.kRightDriveMotor_2, MotorType.kBrushless));
-
+  private final SlewRateLimiter speedSlewRate = new SlewRateLimiter(Constants.Drive.kSlewRate),
+                                rotationSlewRate = new SlewRateLimiter(Constants.Drive.kSlewRate);
+  //The drive motors
+  private final CANSparkMax m_leftFrontMotor = new CANSparkMax(Constants.CAN.kLeftFrontDriveMotor, MotorType.kBrushless),
+                            m_leftRearMotor = new CANSparkMax(Constants.CAN.kLeftRearDriveMotor, MotorType.kBrushless),
+                            m_rightFrontMotor = new CANSparkMax(Constants.CAN.kRightFrontDriveMotor, MotorType.kBrushless),
+                            m_rightRearMotor = new CANSparkMax(Constants.CAN.kRightRearDriveMotor, MotorType.kBrushless);
+  //dirve motor groups
+  private final SpeedControllerGroup m_leftMotors = new SpeedControllerGroup(m_leftFrontMotor,m_leftRearMotor),
+                                     m_rightMotors = new SpeedControllerGroup(m_rightFrontMotor,m_rightRearMotor);
+  
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
-  // The left-side drive encoder
-  private final CANEncoder m_leftEncoder = new CANSparkMax(Constants.CAN.kLeftDriveMotor_1, MotorType.kBrushless)
-      .getEncoder();
-
-  // The right-side drive encoder
-  private final CANEncoder m_rightEncoder = new CANSparkMax(Constants.CAN.kLeftDriveMotor_1, MotorType.kBrushless)
-      .getEncoder();
+  // The drive encoders
+  private final CANEncoder m_leftFrontEncoder = m_leftFrontMotor.getEncoder(),
+                           m_leftRearEncoder = m_leftRearMotor.getEncoder(),
+                           m_rightFrontEncoder = m_rightFrontMotor.getEncoder(),
+                           m_rightRearEncoder = m_rightRearMotor.getEncoder();
 
   /**
    * Creates a new DriveSubsystem.
    */
   public DriveSubsystem() {
-
+    setEncodersConvertion(Constants.GearBoxRatio.kDrive);
+    setEncodersPosition(0);
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Left Front Encoder",getLeftFrontEncoder());
+    SmartDashboard.putNumber("Left Rear Encoder", getLeftRearEncoder());
+    SmartDashboard.putNumber("Right Front Encoder", getrightFrontEncoder());
+    SmartDashboard.putNumber("Right Rear Encoder", getrightRearEncoder());
   }
 
   public void arcadeDrive(final double xSpeed, final double zRotation) {
-    m_drive.arcadeDrive(xSpeed, zRotation);
+    m_drive.arcadeDrive(speedSlewRate.calculate(xSpeed), rotationSlewRate.calculate(zRotation));
+  }
+  //sets the convertion ratio for the drive encoders
+  private void setEncodersConvertion(double factor){
+    setEncoderConvertion(factor,m_leftFrontEncoder);
+    setEncoderConvertion(factor,m_leftRearEncoder);
+    setEncoderConvertion(factor, m_rightFrontEncoder);
+    setEncoderConvertion(factor, m_rightRearEncoder);
+  }
+  private void setEncoderConvertion(double factor,CANEncoder encoder){
+    encoder.setPositionConversionFactor(factor);
+    encoder.setVelocityConversionFactor(factor);
   }
 
-  public void tankDrive(final double leftSpeed, final double rightSpeed) {
-    m_drive.tankDrive(leftSpeed, rightSpeed);
+  public double getLeftFrontEncoder(){
+    return m_leftFrontEncoder.getPosition();
+  }
+  public double getLeftRearEncoder(){
+    return m_leftRearEncoder.getPosition();
+  }
+  public double getrightFrontEncoder(){
+    return m_leftFrontEncoder.getPosition();
+  }
+  public double getrightRearEncoder(){
+    return m_leftRearEncoder.getPosition();
   }
 
-  public double getAveragePosition() {
-    return (m_leftEncoder.getPosition() + m_rightEncoder.getPosition()) / 2.0;
-  }
-
-  public double getAverageVelocity() {
-    return (m_leftEncoder.getVelocity() + m_rightEncoder.getVelocity()) / 2.0;
+  public void setEncodersPosition(double position){
+    m_leftFrontEncoder.setPosition(position);
+    m_leftRearEncoder.setPosition(position);
+    m_rightFrontEncoder.setPosition(position);
+    m_rightRearEncoder.setPosition(position);
   }
 }
