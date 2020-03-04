@@ -31,16 +31,12 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void runIntakeIn(){
-    double speed = 1;
+  
+  public void runIntake(double speed){
     leftIntakeMotor.set(ControlMode.PercentOutput,speed);
     rightIntakeMotor.set(ControlMode.PercentOutput,speed);
   }
-  public void runIntakeOut(){
-    double speed = -1;
-    leftIntakeMotor.set(ControlMode.PercentOutput,speed);
-    rightIntakeMotor.set(ControlMode.PercentOutput,speed);
-  }
+
   public boolean isIntakeDown(){
     if(intake.get()==Value.kForward){
       return true;
@@ -48,9 +44,11 @@ public class IntakeSubsystem extends SubsystemBase {
       return false;
     }
   }
+
   public void setIntakeDown(){
     intake.set(Value.kForward);
   }
+
   public void setIntakeUp(){
     intake.set(Value.kReverse);
   }

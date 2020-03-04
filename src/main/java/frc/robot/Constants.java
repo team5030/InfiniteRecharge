@@ -68,5 +68,6 @@ public final class Constants {
     }
     public final class Misc {
         public static final double kMaxDriveSpeed = 0.5;
+        public static final double kIntakespeed = 1;
     }
 }
