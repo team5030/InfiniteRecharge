@@ -30,25 +30,19 @@ public final class Constants {
                                 kLeftRearDriveMotor = 3,
                                 kLeftFrontDriveMotor = 4,
                                 kPCM = 5,
-                                kIntakeMotor_1 = 6,
-                                kIntakeMotor_2 = 7,
+                                kLeftIntakeMotor = 6,
+                                kRightIntakeMotor = 7,
                                 kRightRearDriveMotor = 8,
                                 kRightFrontDriveMotor = 9,
                                 kTowerMotor = 10,
-                                kHooperMotor = 11;
-                                
-                                
+                                kHooperMotor = 11;                        
     }
 
     public final class PCM {
-        public static final int kChannel_0 = 0,
-                                kChannel_1 = 1,
-                                kChannel_2 = 2,
-                                kChannel_3 = 3,
-                                kChannel_4 = 4,
-                                kChannel_5 = 5,
-                                kChannel_6 = 6,
-                                kChannel_7 = 7;
+        public static final int kIntakeReverse = 0,
+                                kHoodReverse = 1,
+                                kIntakeForward = 2,
+                                kHoodForward = 3;
     }
 
     public final class XboxControllerMap {
@@ -72,5 +66,6 @@ public final class Constants {
     }
     public final class Misc {
         public static final double kMaxDriveSpeed = 0.5;
+        public static final double kIntakespeed = 1;
     }
 }
