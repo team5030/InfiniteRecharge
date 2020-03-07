@@ -25,8 +25,8 @@ public final class Constants {
 
     public final class CAN {
         public static final int kPDP = 0,
-                                kFlyWheelMotor = 1,
-                                kTurretMotor = 2,
+                                kTurretMotor = 1,
+                                kFlyWheelMotor = 2,
                                 kLeftRearDriveMotor = 3,
                                 kLeftFrontDriveMotor = 4,
                                 kPCM = 5,
@@ -34,7 +34,7 @@ public final class Constants {
                                 kRightIntakeMotor = 7,
                                 kRightRearDriveMotor = 8,
                                 kRightFrontDriveMotor = 9,
-                                kTowerMotor = 10,
+                                kKickerMotor = 10,
                                 kHooperMotor = 11;                        
     }
 
@@ -65,7 +65,9 @@ public final class Constants {
         public static final double kSlewRate = 0.8;
     }
     public final class Misc {
-        public static final double kMaxDriveSpeed = 0.5;
-        public static final double kIntakespeed = 1;
+        public static final double  kMaxDriveSpeed = 0.5,
+                                    kShooterSpeed = 0.5,
+                                    kIntakespeed = 0.5,
+                                    kFeedSpeed = 0.5;
     }
 }
