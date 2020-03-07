@@ -70,12 +70,12 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Operator Button Bindings
     new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHood);
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kLB).whenPressed(m_kicker);
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kRB).whenPressed(m_Shooter);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kLB).whenHeld(m_kicker);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kRB).whenHeld(m_Shooter);
 
     // Driver Button Bindings
-    new JoystickButton(m_driver, Constants.XboxControllerMap.kA).whenPressed(m_runIntakeIn);
-    new JoystickButton(m_driver, Constants.XboxControllerMap.kB).whenPressed(m_runIntakeOut);
+    new JoystickButton(m_driver, Constants.XboxControllerMap.kA).whenHeld(m_runIntakeIn);
+    new JoystickButton(m_driver, Constants.XboxControllerMap.kB).whenHeld(m_runIntakeOut);
     new JoystickButton(m_driver, Constants.XboxControllerMap.kRB).whenPressed(m_setIntake);
   }
 
