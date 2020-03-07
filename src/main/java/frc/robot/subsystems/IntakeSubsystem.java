@@ -40,6 +40,13 @@ public class IntakeSubsystem extends SubsystemBase {
     hooperMotor.set(ControlMode.PercentOutput,speed);
   }
 
+  public void runIntake(double speed,Boolean limit){
+    runIntake(speed);
+    if(!limit){
+      kickerMotor.set(ControlMode.PercentOutput,speed);
+    }
+  }
+
   public void runKicker(double speed){
     hooperMotor.set(ControlMode.PercentOutput,speed);
     kickerMotor.set(ControlMode.PercentOutput,speed);

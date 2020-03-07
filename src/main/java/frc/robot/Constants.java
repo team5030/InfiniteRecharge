@@ -69,5 +69,6 @@ public final class Constants {
                                     kShooterSpeed = 0.5,
                                     kIntakespeed = 0.5,
                                     kFeedSpeed = 0.5;
+        public static final int kLimit = 0;
     }
 }

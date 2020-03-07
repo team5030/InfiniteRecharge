@@ -7,12 +7,14 @@
 
 package frc.robot.commands.intakecommands;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class RunIntakeIn extends CommandBase {
   private final IntakeSubsystem m_intakeSubsystem;
+  private final DigitalInput limit = new DigitalInput(Constants.Misc.kLimit);
   /**
    * Creates a new RunIntakeIn.
    */
@@ -30,7 +32,7 @@ public class RunIntakeIn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSubsystem.runIntake(Constants.Misc.kIntakespeed);
+    m_intakeSubsystem.runIntake(Constants.Misc.kIntakespeed,limit.get());
   }
 
   // Called once the command ends or is interrupted.
