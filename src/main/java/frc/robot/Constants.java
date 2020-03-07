@@ -34,8 +34,8 @@ public final class Constants {
                                 kRightIntakeMotor = 7,
                                 kRightRearDriveMotor = 8,
                                 kRightFrontDriveMotor = 9,
-                                kKickerMotor = 10,
-                                kHooperMotor = 11;                        
+                                kKickerMotor = 11,
+                                kHooperMotor = 10;                        
     }
 
     public final class PCM {
