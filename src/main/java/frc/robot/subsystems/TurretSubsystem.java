@@ -27,6 +27,7 @@ public class TurretSubsystem extends SubsystemBase {
    * Creates a new shooter.
    */
   public TurretSubsystem() {
+    flyWheelMotor.setInverted(true);
 
   }
 

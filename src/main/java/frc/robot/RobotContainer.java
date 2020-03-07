@@ -42,12 +42,15 @@ public class RobotContainer {
   private final SetHood m_setHood = new SetHood(m_turretSubsystem);
   private final VisionTracking m_visionTracking = new VisionTracking(m_turretSubsystem,m_operator);
   private final Shooter m_Shooter = new Shooter(m_turretSubsystem);
+  private final StopShooter m_stopShooter = new StopShooter(m_turretSubsystem);
   
   // Intake Commands
   private final RunIntakeOut m_runIntakeOut = new RunIntakeOut(m_intake);
   private final RunIntakeIn m_runIntakeIn = new RunIntakeIn(m_intake);
   private final SetIntake m_setIntake = new SetIntake(m_intake);
   private final Kicker m_kicker = new Kicker(m_intake);
+  private final StopIntake m_stopIntake = new StopIntake(m_intake);
+  private final StopKicker m_stopKicker = new StopKicker(m_intake);
 
   // Air Compressor
   private final Compressor m_compressor = new Compressor(Constants.CAN.kPCM);
@@ -70,12 +73,12 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Operator Button Bindings
     new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHood);
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kLB).whenHeld(m_kicker);
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kRB).whenHeld(m_Shooter);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kLB).whenPressed(m_kicker).whenReleased(m_stopKicker);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kRB).whenPressed(m_Shooter).whenReleased(m_stopShooter);
 
     // Driver Button Bindings
-    new JoystickButton(m_driver, Constants.XboxControllerMap.kA).whenHeld(m_runIntakeIn);
-    new JoystickButton(m_driver, Constants.XboxControllerMap.kB).whenHeld(m_runIntakeOut);
+    new JoystickButton(m_driver, Constants.XboxControllerMap.kA).whenPressed(m_runIntakeIn).whenReleased(m_stopIntake);
+    new JoystickButton(m_driver, Constants.XboxControllerMap.kB).whenPressed(m_runIntakeOut);
     new JoystickButton(m_driver, Constants.XboxControllerMap.kRB).whenPressed(m_setIntake);
   }
 
