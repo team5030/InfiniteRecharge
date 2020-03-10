@@ -40,7 +40,7 @@ public class IntakeSubsystem extends SubsystemBase {
     leftIntakeMotor.set(ControlMode.PercentOutput,speed);
     rightIntakeMotor.set(ControlMode.PercentOutput,speed);
     hooperMotor.set(ControlMode.PercentOutput,-speed);
-    if(!limit.get()){
+    if(limit.get()){
       kickerMotor.set(ControlMode.PercentOutput,speed);
     }else{
       kickerMotor.set(ControlMode.PercentOutput,0);
