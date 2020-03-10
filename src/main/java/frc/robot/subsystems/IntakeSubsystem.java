@@ -19,6 +19,8 @@ public class IntakeSubsystem extends SubsystemBase {
   private final DoubleSolenoid intake = new DoubleSolenoid(Constants.CAN.kPCM, Constants.PCM.kIntakeForward, Constants.PCM.kIntakeReverse);
   private final TalonSRX leftIntakeMotor = new TalonSRX(Constants.CAN.kLeftIntakeMotor);
   private final TalonSRX rightIntakeMotor = new TalonSRX(Constants.CAN.kRightIntakeMotor);
+  private final TalonSRX hooperMotor = new TalonSRX(Constants.CAN.kHooperMotor);
+  private final TalonSRX kickerMotor = new TalonSRX(Constants.CAN.kKickerMotor);
   /**
    * Creates a new IntakeSubsystem.
    */
@@ -35,6 +37,19 @@ public class IntakeSubsystem extends SubsystemBase {
   public void runIntake(double speed){
     leftIntakeMotor.set(ControlMode.PercentOutput,speed);
     rightIntakeMotor.set(ControlMode.PercentOutput,speed);
+    hooperMotor.set(ControlMode.PercentOutput,speed);
+  }
+
+  public void runIntake(double speed,Boolean limit){
+    runIntake(speed);
+    if(!limit){
+      kickerMotor.set(ControlMode.PercentOutput,speed);
+    }
+  }
+
+  public void runKicker(double speed){
+    hooperMotor.set(ControlMode.PercentOutput,speed);
+    kickerMotor.set(ControlMode.PercentOutput,speed);
   }
 
   public boolean isIntakeDown(){

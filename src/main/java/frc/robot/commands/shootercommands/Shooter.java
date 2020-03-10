@@ -7,22 +7,19 @@
 
 package frc.robot.commands.shootercommands;
 
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.TurretSubsystem;
 
 public class Shooter extends CommandBase {
-  private final TurretSubsystem m_TurretSubsystem;
-  private final XboxController m_operator;
+  private final TurretSubsystem m_turretSubsystem;
 
   /**
    * Creates a new Shooter.
    */
-  public Shooter(TurretSubsystem turretSubsystem, XboxController operator) {
-    m_TurretSubsystem = turretSubsystem;
-    m_operator = operator;
-    addRequirements(m_TurretSubsystem);
+  public Shooter(TurretSubsystem turretSubsystem) {
+    m_turretSubsystem = turretSubsystem;
+    addRequirements(m_turretSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -33,13 +30,13 @@ public class Shooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double ySpeed = 0.0;
-    m_TurretSubsystem.setFlyWheelSpeed(ySpeed);;
+    m_turretSubsystem.setFlyWheelSpeed(Constants.Misc.kShooterSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_turretSubsystem.setFlyWheelSpeed(0);
   }
 
   // Returns true when the command should end.
