@@ -47,13 +47,10 @@ public class Limelight extends SubsystemBase {
     return limelight.getEntry("ts").getDouble(0);
   }
 
-  public void setCamMode(boolean mode){
-    if(mode){
-      m_mode = 1;
-    }else{
-      m_mode = 0;
-    }
-    limelight.getEntry("camMode").setNumber(m_mode);
-    SmartDashboard.putBoolean("Limelight On", mode);
+  public void switchCamMode(){
+    if(m_mode == 0)
+      limelight.getEntry("camMode").setNumber(1);
+    else
+      limelight.getEntry("camMode").setNumber(0);
   }
 }
