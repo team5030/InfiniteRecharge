@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.commands.dirvecommands.*;
+import frc.robot.commands.intakecommands.*;
 import frc.robot.commands.shootercommands.*;
 import frc.robot.subsystems.*;
 
@@ -23,20 +25,29 @@ import frc.robot.subsystems.*;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
   // Controllers
   XboxController m_driver = new XboxController(Constants.OI.kDriverControllerPort),
-                 m_operator = new XboxController(Constants.OI.kDriverControllerPort);
+                 m_operator = new XboxController(Constants.OI.kOperatorControllerPort);
 
   // Subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  private final TurretSubsystem m_turretContol = new TurretSubsystem();
+  private final TurretSubsystem m_turretSubsystem = new TurretSubsystem();
+  private final IntakeSubsystem m_intake = new IntakeSubsystem();
   
-  // Commands
+  // Drive Commands
   private final DefaltDrive m_defaltDrive = new DefaltDrive(m_robotDrive, m_driver);
-  private final DefaultTurret m_defaltTurret = new DefaultTurret(m_turretContol,m_operator);
-  private final SetHood m_setHood = new SetHood(m_turretContol);
-  private final VisionTracking m_visionTracking = new VisionTracking(m_turretContol,m_operator);
+  private final DefaultTurret m_defaltTurret = new DefaultTurret(m_turretSubsystem,m_operator);
+  
+  // Shooter Commands
+  private final SetHood m_setHood = new SetHood(m_turretSubsystem);
+  private final VisionTracking m_visionTracking = new VisionTracking(m_turretSubsystem,m_operator);
+  private final Shooter m_Shooter = new Shooter(m_turretSubsystem);
+  
+  // Intake Commands
+  private final RunIntakeOut m_runIntakeOut = new RunIntakeOut(m_intake);
+  private final RunIntakeIn m_runIntakeIn = new RunIntakeIn(m_intake);
+  private final SetIntake m_setIntake = new SetIntake(m_intake);
+  private final Kicker m_kicker = new Kicker(m_intake);
 
   // Air Compressor
   private final Compressor m_compressor = new Compressor(Constants.CAN.kPCM);
@@ -44,9 +55,10 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    
+    // Default Commands
     m_robotDrive.setDefaultCommand(m_defaltDrive);
-    m_turretContol.setDefaultCommand(m_defaltTurret);
-
+    m_turretSubsystem.setDefaultCommand(m_defaltTurret);
   }
 
   /**
@@ -57,8 +69,15 @@ public class RobotContainer {
    */
 
   private void configureButtonBindings() {
+    // Operator Button Bindings
     new JoystickButton(m_operator, Constants.XboxControllerMap.kA).whenPressed(m_setHood);
-    new JoystickButton(m_operator, Constants.XboxControllerMap.kRB).whenHeld(m_visionTracking);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kLB).whenHeld(m_kicker);
+    new JoystickButton(m_operator, Constants.XboxControllerMap.kRB).whenHeld(m_Shooter);
+
+    // Driver Button Bindings
+    new JoystickButton(m_driver, Constants.XboxControllerMap.kA).whenHeld(m_runIntakeIn);
+    new JoystickButton(m_driver, Constants.XboxControllerMap.kB).whenHeld(m_runIntakeOut);
+    new JoystickButton(m_driver, Constants.XboxControllerMap.kRB).whenPressed(m_setIntake);
   }
 
   /**
