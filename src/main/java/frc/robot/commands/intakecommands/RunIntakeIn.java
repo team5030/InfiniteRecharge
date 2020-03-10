@@ -14,7 +14,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 public class RunIntakeIn extends CommandBase {
   private final IntakeSubsystem m_intakeSubsystem;
-  private final DigitalInput limit = new DigitalInput(Constants.Misc.kLimit);
+  private final DigitalInput limit = new DigitalInput(0);
   /**
    * Creates a new RunIntakeIn.
    */
