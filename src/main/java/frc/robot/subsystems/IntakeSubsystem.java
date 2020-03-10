@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,6 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private final TalonSRX rightIntakeMotor = new TalonSRX(Constants.CAN.kRightIntakeMotor);
   private final TalonSRX hooperMotor = new TalonSRX(Constants.CAN.kHooperMotor);
   private final TalonSRX kickerMotor = new TalonSRX(Constants.CAN.kKickerMotor);
+  private final DigitalInput limit = new DigitalInput(Constants.Misc.kLimit);
   /**
    * Creates a new IntakeSubsystem.
    */
@@ -38,13 +40,16 @@ public class IntakeSubsystem extends SubsystemBase {
     leftIntakeMotor.set(ControlMode.PercentOutput,speed);
     rightIntakeMotor.set(ControlMode.PercentOutput,speed);
     hooperMotor.set(ControlMode.PercentOutput,speed);
-  }
-
-  public void runIntake(double speed,Boolean limit){
-    runIntake(speed);
-    if(!limit){
+    if(!limit.get()){
       kickerMotor.set(ControlMode.PercentOutput,speed);
     }
+  }
+  public void stopIntake(){
+    double speed = 0;
+    leftIntakeMotor.set(ControlMode.PercentOutput,speed);
+    rightIntakeMotor.set(ControlMode.PercentOutput,speed);
+    hooperMotor.set(ControlMode.PercentOutput,speed);
+    kickerMotor.set(ControlMode.PercentOutput,speed);
   }
 
   public void runKicker(double speed){
