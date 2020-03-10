@@ -39,16 +39,18 @@ public class IntakeSubsystem extends SubsystemBase {
   public void runIntake(double speed){
     leftIntakeMotor.set(ControlMode.PercentOutput,speed);
     rightIntakeMotor.set(ControlMode.PercentOutput,speed);
-    hooperMotor.set(ControlMode.PercentOutput,speed);
+    hooperMotor.set(ControlMode.PercentOutput,-speed);
     if(!limit.get()){
       kickerMotor.set(ControlMode.PercentOutput,speed);
+    }else{
+      kickerMotor.set(ControlMode.PercentOutput,0);
     }
   }
   public void stopIntake(){
     double speed = 0;
     leftIntakeMotor.set(ControlMode.PercentOutput,speed);
     rightIntakeMotor.set(ControlMode.PercentOutput,speed);
-    hooperMotor.set(ControlMode.PercentOutput,speed);
+    hooperMotor.set(ControlMode.PercentOutput,-speed);
     kickerMotor.set(ControlMode.PercentOutput,speed);
   }
 

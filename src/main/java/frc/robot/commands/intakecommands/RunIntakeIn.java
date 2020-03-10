@@ -7,7 +7,6 @@
 
 package frc.robot.commands.intakecommands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
