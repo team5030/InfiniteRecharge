@@ -38,7 +38,7 @@ public class RunIntakeIn extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSubsystem.runIntake(0);
+    m_intakeSubsystem.runIntake(0,false);
   }
 
   // Returns true when the command should end.
